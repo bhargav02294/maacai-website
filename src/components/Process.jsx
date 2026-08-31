@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import Icon from './Icon';
 import Reveal from './Reveal';
@@ -54,69 +53,91 @@ const steps = [
 
 export default function Process() {
   const sectionRef = useRef(null);
-  const rafRef = useRef(null);
-
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) return undefined;
+
+    let ticking = false;
+
     const updateProgress = () => {
-      const section = sectionRef.current;
-
-      if (!section) return;
-
       const rect = section.getBoundingClientRect();
       const scrollableDistance = section.offsetHeight - window.innerHeight;
 
       if (scrollableDistance <= 0) {
         setProgress(0);
+        ticking = false;
         return;
       }
 
-      const current = -rect.top;
-      const nextProgress = Math.min(
+      /*
+       * When the section reaches the top of the viewport:
+       *
+       * 0%   = first step
+       * 100% = last step
+       *
+       * Because the whole section is taller than the viewport,
+       * the sticky process stays visible while the page scrolls.
+       */
+      const current = Math.min(
+        Math.max(-rect.top / scrollableDistance, 0),
         1,
-        Math.max(0, current / scrollableDistance)
       );
 
-      setProgress(nextProgress);
+      setProgress(current);
+      ticking = false;
     };
 
     const handleScroll = () => {
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
+      if (!ticking) {
+        window.requestAnimationFrame(updateProgress);
+        ticking = true;
       }
+    };
 
-      rafRef.current = requestAnimationFrame(updateProgress);
+    const handleResize = () => {
+      updateProgress();
     };
 
     updateProgress();
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
+    window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
-  const activeIndex = Math.min(
-    steps.length - 1,
-    Math.round(progress * (steps.length - 1))
-  );
+  /*
+   * 0 → 8
+   *
+   * Each step occupies an equal portion of the scroll progress.
+   *
+   * Example:
+   * 0%   = 01
+   * 12.5% = 02
+   * 25%  = 03
+   * ...
+   * 100% = 09
+   */
+  const rawStep = progress * (steps.length - 1);
+  const activeStep = Math.round(rawStep);
 
-  const lineProgress = progress * 100;
+  const lineProgress =
+    steps.length > 1
+      ? (rawStep / (steps.length - 1)) * 100
+      : 0;
 
   return (
     <section
       ref={sectionRef}
       className="process-section"
       style={{
-        '--process-progress': `${lineProgress}%`,
+        '--process-count': steps.length,
       }}
     >
       <div className="process-sticky">
@@ -136,52 +157,79 @@ export default function Process() {
             </div>
           </Reveal>
 
-          <div className="process-wrapper">
-            <div className="process-timeline">
-              <div className="process-timeline__track" />
-
-              <div className="process-timeline__progress" />
+          <div className="process-track">
+            <div className="process-line" aria-hidden="true">
+              <span
+                style={{
+                  width: `${lineProgress}%`,
+                }}
+              />
             </div>
 
-            <div className="process-list">
-              {steps.map((step, index) => {
-                const isActive = index === activeIndex;
-                const isCompleted = index < activeIndex;
+            <div className="process-progress-label">
+              <span>
+                {String(activeStep + 1).padStart(2, '0')}
+              </span>
+              <span className="process-progress-label__divider">/</span>
+              <span>{String(steps.length).padStart(2, '0')}</span>
+            </div>
 
-                return (
-                  <div
-                    key={step.num}
-                    className={`process-step ${
-                      isActive ? 'process-step--active' : ''
-                    } ${isCompleted ? 'process-step--completed' : ''}`}
-                  >
-                    <div className="process-step__marker">
-                      <div className="process-step__circle">
-                        {isCompleted ? (
-                          <Icon name="check" size={14} />
-                        ) : (
-                          step.num
-                        )}
-                      </div>
-                    </div>
+            {steps.map((step, index) => {
+              const isActive = index === activeStep;
+              const isCompleted = index < activeStep;
 
-                    <div className="process-step__content">
-                      <span className="process-step__eyebrow">
-                        STEP {step.num}
-                      </span>
+              /*
+               * Smooth per-step interpolation.
+               *
+               * This gives the active step a subtle scale/opacity
+               * transition instead of making it simply switch on/off.
+               */
+              const distance = Math.abs(rawStep - index);
+              const emphasis = Math.max(0, 1 - distance);
 
-                      <h3>{step.title}</h3>
+              return (
+                <div
+                  key={step.num}
+                  className={[
+                    'process-step',
+                    isActive ? 'process-step--active' : '',
+                    isCompleted ? 'process-step--completed' : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                  style={{
+                    '--step-emphasis': emphasis,
+                  }}
+                >
+                  <div className="process-step__content">
+                    <span className="process-step__eyebrow">
+                      STEP {step.num}
+                    </span>
 
-                      <p>{step.desc}</p>
-                    </div>
+                    <h3>{step.title}</h3>
+
+                    <p>{step.desc}</p>
                   </div>
-                );
-              })}
-            </div>
+
+                  <div className="process-step__circle">
+                    <span className="process-step__circle-inner">
+                      {isCompleted ? (
+                        <Icon name="check" size={15} />
+                      ) : (
+                        step.num
+                      )}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
-          <div className="process-scroll-hint">
-            <span className="process-scroll-hint__line" />
+          <div className="process-scroll-hint" aria-hidden="true">
+            <span className="process-scroll-hint__mouse">
+              <span />
+            </span>
+
             <span>SCROLL TO EXPLORE</span>
           </div>
         </div>

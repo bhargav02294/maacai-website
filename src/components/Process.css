@@ -1,438 +1,452 @@
-
 .process-section {
+  --process-bg: #f7f9fc;
+  --process-line: #e2e7ef;
+  --process-muted: #9aa5b4;
+  --process-card: #ffffff;
+
+  /*
+   * The extra height creates the scroll-controlled timeline.
+   *
+   * The actual UI remains sticky inside this section.
+   */
   position: relative;
-  height: 650vh;
-  background: #f7f9fc;
+  min-height: calc(100vh + 150vh);
+  padding: 0;
+  background: var(--process-bg);
   overflow: clip;
 }
 
 .process-sticky {
   position: sticky;
   top: 0;
-  height: 100vh;
-  min-height: 680px;
+
+  min-height: 100vh;
+
   display: flex;
   align-items: center;
+
+  padding: 80px 0;
+
   overflow: hidden;
 }
 
-.process-section .container {
-  width: 100%;
-}
+/* ------------------------------------------------------------
+   HEADER
+------------------------------------------------------------ */
 
 .process-section__header {
   max-width: 760px;
-  margin: 0 auto 34px;
+  margin: 0 auto 58px;
 }
 
 .process-section__header .section-tag {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .process-section__header .section-title {
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .process-section__header .section-subtitle {
   max-width: 650px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* =========================================
-   PROCESS WRAPPER
-   ========================================= */
-
-.process-wrapper {
-  position: relative;
-  width: min(760px, 100%);
   margin: 0 auto;
-  padding: 4px 0;
 }
 
-/* =========================================
-   VERTICAL TIMELINE
-   ========================================= */
+/* ------------------------------------------------------------
+   PROCESS TRACK
+------------------------------------------------------------ */
 
-.process-timeline {
+.process-track {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  align-items: start;
+
+  gap: 8px;
+
+  width: 100%;
+  max-width: 1180px;
+
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+/* ------------------------------------------------------------
+   HORIZONTAL LINE
+------------------------------------------------------------ */
+
+.process-line {
   position: absolute;
-  left: 31px;
+
+  /*
+   * Aligns the line through the center of the circles.
+   */
+  left: 4%;
+  right: 4%;
   top: 31px;
-  bottom: 31px;
-  width: 2px;
-  pointer-events: none;
+
+  height: 3px;
+
+  background: var(--process-line);
+
+  border-radius: 999px;
+
+  overflow: hidden;
+
   z-index: 0;
 }
 
-.process-timeline__track {
+.process-line::before {
+  content: '';
+
   position: absolute;
   inset: 0;
-  background: #e1e7ef;
-  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(124, 58, 237, 0.04),
+      rgba(124, 58, 237, 0.02)
+    );
 }
 
-.process-timeline__progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--process-progress);
-  max-height: 100%;
+.process-line > span {
+  display: block;
+
+  width: 0;
+  height: 100%;
+
   background: var(--gradient-full);
-  border-radius: 999px;
-  transform-origin: top;
-  transition: height 0.12s linear;
+
+  border-radius: inherit;
+
+  transform-origin: left center;
+
+  /*
+   * Slightly delayed/smoothed movement.
+   */
+  transition:
+    width 0.12s linear,
+    opacity 0.3s ease;
+
+  box-shadow:
+    0 0 10px rgba(124, 58, 237, 0.12);
 }
 
-/* =========================================
-   PROCESS LIST
-   ========================================= */
-
-.process-list {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
+/* ------------------------------------------------------------
+   STEP
+------------------------------------------------------------ */
 
 .process-step {
   position: relative;
-  display: grid;
-  grid-template-columns: 64px 1fr;
-  align-items: center;
-  min-height: 65px;
-  padding: 2px 0;
-}
 
-/* =========================================
-   MARKER
-   ========================================= */
+  z-index: 1;
 
-.process-step__marker {
-  position: relative;
+  min-width: 0;
+
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 64px;
+
+  text-align: center;
+
+  /*
+   * The step itself remains stable while its visual emphasis
+   * follows the scroll progress.
+   */
+  opacity: calc(0.58 + (var(--step-emphasis) * 0.42));
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
+
+.process-step--active {
+  transform: translateY(-5px);
+}
+
+.process-step--completed {
+  opacity: 0.9;
+}
+
+/* ------------------------------------------------------------
+   CIRCLE
+------------------------------------------------------------ */
 
 .process-step__circle {
-  position: relative;
-  width: 54px;
-  height: 54px;
+  width: 62px;
+  height: 62px;
+
+  flex: 0 0 62px;
+
   display: grid;
   place-items: center;
+
   border-radius: 50%;
-  background: #ffffff;
+
+  background: var(--process-card);
+
   border: 1px solid #dfe5ee;
-  color: #9aa5b4;
+
+  color: var(--process-muted);
+
   font-size: 10px;
   font-weight: 900;
   letter-spacing: 0.2px;
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.045);
+
+  box-shadow:
+    0 7px 18px rgba(15, 23, 42, 0.05);
 
   transition:
-    width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.35s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     background 0.35s ease,
+    color 0.35s ease,
     border-color 0.35s ease,
-    box-shadow 0.45s ease,
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow 0.35s ease;
 }
 
-.process-step__circle::after {
-  content: '';
-  position: absolute;
-  inset: -6px;
+.process-step__circle-inner {
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  height: 100%;
+
   border-radius: inherit;
-  border: 1px solid transparent;
-  opacity: 0;
-  transform: scale(0.75);
-  transition:
-    opacity 0.45s ease,
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* =========================================
+/* Active */
+
+.process-step--active .process-step__circle {
+  color: #fff;
+
+  background: var(--gradient-full);
+
+  border-color: transparent;
+
+  box-shadow:
+    0 12px 28px rgba(124, 58, 237, 0.2),
+    0 0 0 7px rgba(124, 58, 237, 0.055);
+
+  transform: scale(1.08);
+}
+
+/* Completed */
+
+.process-step--completed .process-step__circle {
+  color: #fff;
+
+  background: var(--gradient-full);
+
+  border-color: transparent;
+
+  box-shadow:
+    0 8px 20px rgba(124, 58, 237, 0.12);
+}
+
+/* ------------------------------------------------------------
    CONTENT
-   ========================================= */
+------------------------------------------------------------ */
 
 .process-step__content {
-  padding: 7px 0 7px 20px;
+  order: 2;
+
+  padding-top: 17px;
+
+  max-width: 125px;
+
   transition:
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.35s ease;
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-step--active .process-step__content {
+  transform: translateY(2px);
 }
 
 .process-step__eyebrow {
   display: block;
-  margin-bottom: 2px;
-  color: #a3adbb;
+
   font-size: 8px;
   font-weight: 800;
+
   letter-spacing: 1.4px;
-  line-height: 1.2;
-  transition: color 0.35s ease;
-}
 
-.process-step h3 {
-  margin: 0 0 2px;
-  color: var(--text-dark);
-  font-size: 13px;
-  font-weight: 800;
-  line-height: 1.25;
+  color: #a3adbb;
+
   transition:
-    color 0.35s ease,
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.process-step p {
-  margin: 0;
-  color: var(--text-gray);
-  font-size: 9.5px;
-  line-height: 1.4;
-  transition:
-    color 0.35s ease,
-    opacity 0.35s ease;
-}
-
-/* =========================================
-   COMPLETED
-   ========================================= */
-
-.process-step--completed .process-step__circle {
-  color: #ffffff;
-  background: var(--gradient-full);
-  border-color: transparent;
-  box-shadow: 0 7px 20px rgba(124, 58, 237, 0.12);
-}
-
-.process-step--completed .process-step__eyebrow {
-  color: var(--primary);
-}
-
-/* =========================================
-   ACTIVE
-   ========================================= */
-
-.process-step--active .process-step__circle {
-  width: 62px;
-  height: 62px;
-  color: #ffffff;
-  background: var(--gradient-full);
-  border-color: transparent;
-  box-shadow:
-    0 12px 30px rgba(124, 58, 237, 0.22),
-    0 0 0 5px rgba(124, 58, 237, 0.07);
-  transform: scale(1.02);
-}
-
-.process-step--active .process-step__circle::after {
-  border-color: rgba(124, 58, 237, 0.2);
-  opacity: 1;
-  transform: scale(1);
-}
-
-.process-step--active .process-step__content {
-  transform: translateX(5px);
+    color 0.3s ease,
+    letter-spacing 0.3s ease;
 }
 
 .process-step--active .process-step__eyebrow {
   color: var(--primary);
+
+  letter-spacing: 1.7px;
 }
 
-.process-step--active h3 {
-  color: var(--primary);
-  transform: translateX(2px);
+.process-step h3 {
+  margin: 4px 0;
+
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 800;
+
+  color: var(--text-dark, #0f172a);
+}
+
+.process-step p {
+  margin: 0;
+
+  font-size: 9.5px;
+  line-height: 1.45;
+
+  color: var(--text-gray);
+
+  transition: color 0.3s ease;
 }
 
 .process-step--active p {
-  color: var(--text-dark);
+  color: #667085;
 }
 
-/* =========================================
+/* ------------------------------------------------------------
+   PROGRESS COUNTER
+------------------------------------------------------------ */
+
+.process-progress-label {
+  position: absolute;
+
+  top: -42px;
+  right: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  color: #a3adbb;
+}
+
+.process-progress-label > span:first-child {
+  color: var(--primary);
+}
+
+.process-progress-label__divider {
+  opacity: 0.45;
+}
+
+/* ------------------------------------------------------------
    SCROLL HINT
-   ========================================= */
+------------------------------------------------------------ */
 
 .process-scroll-hint {
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 9px;
-  margin-top: 22px;
-  color: #a3adbb;
-  font-size: 7px;
+
+  margin-top: 54px;
+
+  font-size: 8px;
   font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  opacity: 0.85;
+
+  letter-spacing: 1.8px;
+
+  color: #a3adbb;
+
+  transition:
+    opacity 0.3s ease;
 }
 
-.process-scroll-hint__line {
+.process-scroll-hint__mouse {
   position: relative;
+
+  width: 16px;
+  height: 25px;
+
   display: block;
-  width: 18px;
-  height: 1px;
-  background: #cbd3de;
-  overflow: hidden;
+
+  border: 1.5px solid #aeb7c4;
+
+  border-radius: 999px;
 }
 
-.process-scroll-hint__line::after {
-  content: '';
+.process-scroll-hint__mouse span {
   position: absolute;
-  left: -100%;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--gradient-full);
-  animation: processHint 1.8s ease-in-out infinite;
+
+  top: 5px;
+  left: 50%;
+
+  width: 3px;
+  height: 5px;
+
+  border-radius: 999px;
+
+  background: var(--primary);
+
+  transform: translateX(-50%);
+
+  animation:
+    process-scroll-wheel 1.5s ease-in-out infinite;
 }
 
-@keyframes processHint {
+@keyframes process-scroll-wheel {
   0% {
-    left: -100%;
+    opacity: 0;
+    transform: translate(-50%, 0);
   }
 
-  50% {
-    left: 0;
+  25% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
   }
 
   100% {
-    left: 100%;
+    opacity: 0;
+    transform: translate(-50%, 7px);
   }
 }
 
-/* =========================================
+/* ------------------------------------------------------------
    TABLET
-   ========================================= */
+------------------------------------------------------------ */
 
-@media (max-width: 900px) {
-  .process-section {
-    height: 600vh;
-  }
-
+@media (max-width: 1100px) {
   .process-sticky {
-    min-height: 620px;
-    padding: 60px 0;
+    padding: 70px 0;
   }
 
   .process-section__header {
-    margin-bottom: 26px;
+    margin-bottom: 52px;
   }
 
-  .process-wrapper {
-    width: min(680px, 100%);
-  }
-
-  .process-step {
-    min-height: 58px;
-  }
-
-  .process-step__marker {
-    width: 58px;
-  }
-
-  .process-timeline {
-    left: 28px;
-    top: 29px;
-    bottom: 29px;
+  .process-track {
+    gap: 4px;
   }
 
   .process-step__circle {
-    width: 50px;
-    height: 50px;
+    width: 56px;
+    height: 56px;
+    flex-basis: 56px;
   }
 
-  .process-step--active .process-step__circle {
-    width: 58px;
-    height: 58px;
-  }
-
-  .process-step__content {
-    padding-left: 17px;
-  }
-
-  .process-step h3 {
-    font-size: 12px;
-  }
-
-  .process-step p {
-    font-size: 9px;
-  }
-}
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 600px) {
-  .process-section {
-    height: 720vh;
-  }
-
-  .process-sticky {
-    min-height: 100svh;
-    height: 100svh;
-    padding: 34px 0;
-  }
-
-  .process-section__header {
-    max-width: 340px;
-    margin-bottom: 25px;
-  }
-
-  .process-section__header .section-title {
-    font-size: clamp(25px, 7vw, 34px);
-  }
-
-  .process-section__header .section-subtitle {
-    font-size: 12px;
-    line-height: 1.55;
-  }
-
-  .process-wrapper {
-    width: 100%;
-  }
-
-  .process-list {
-    gap: 0;
-  }
-
-  .process-step {
-    grid-template-columns: 52px 1fr;
-    min-height: 54px;
-  }
-
-  .process-step__marker {
-    width: 52px;
-  }
-
-  .process-timeline {
-    left: 25px;
-    top: 27px;
-    bottom: 27px;
-  }
-
-  .process-step__circle {
-    width: 42px;
-    height: 42px;
-    font-size: 8px;
-  }
-
-  .process-step--active .process-step__circle {
-    width: 50px;
-    height: 50px;
+  .process-line {
+    top: 28px;
+    left: 4%;
+    right: 4%;
   }
 
   .process-step__content {
-    padding: 5px 0 5px 13px;
-  }
-
-  .process-step__eyebrow {
-    font-size: 7px;
-    letter-spacing: 1.1px;
+    max-width: 110px;
   }
 
   .process-step h3 {
@@ -440,30 +454,230 @@
   }
 
   .process-step p {
-    font-size: 8px;
-    line-height: 1.35;
-  }
-
-  .process-scroll-hint {
-    margin-top: 18px;
-    font-size: 6.5px;
+    font-size: 9px;
   }
 }
 
-/* =========================================
-   REDUCED MOTION
-   ========================================= */
+/* ------------------------------------------------------------
+   MOBILE
+------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  .process-section {
+    /*
+     * Less scroll distance on mobile.
+     */
+    min-height: calc(100vh + 115vh);
+  }
+
+  .process-sticky {
+    min-height: 100svh;
+
+    padding: 65px 0 55px;
+
+    align-items: center;
+  }
+
+  .process-section__header {
+    margin-bottom: 38px;
+  }
+
+  .process-track {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0;
+
+    padding: 0 0 0 4px;
+  }
+
+  /*
+   * Vertical timeline.
+   */
+  .process-line {
+    left: 31px;
+    right: auto;
+
+    top: 28px;
+    bottom: 28px;
+
+    width: 3px;
+    height: auto;
+
+    overflow: hidden;
+  }
+
+  .process-line > span {
+    width: 100% !important;
+    height: var(--mobile-line-progress, 0%);
+
+    /*
+     * JS below updates the same progress value through
+     * the inline width; mobile uses transform instead.
+     */
+    transform-origin: top center;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr);
+
+    align-items: start;
+
+    gap: 18px;
+
+    width: 100%;
+
+    padding: 8px 0;
+    text-align: left;
+
+    opacity: 0.48;
+
+    transform: none;
+  }
+
+  .process-step--active {
+    opacity: 1;
+  }
+
+  .process-step--completed {
+    opacity: 0.8;
+  }
+
+  .process-step__circle {
+    grid-column: 1;
+    grid-row: 1;
+
+    width: 62px;
+    height: 62px;
+
+    flex-basis: 62px;
+
+    transform: scale(0.94);
+  }
+
+  .process-step--active .process-step__circle {
+    transform: scale(1.04);
+  }
+
+  .process-step__content {
+    grid-column: 2;
+    grid-row: 1;
+
+    max-width: 460px;
+
+    padding-top: 7px;
+  }
+
+  .process-step h3 {
+    font-size: 14px;
+  }
+
+  .process-step p {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .process-step__eyebrow {
+    font-size: 8px;
+  }
+
+  .process-progress-label {
+    position: static;
+
+    justify-content: flex-end;
+
+    margin-bottom: 12px;
+  }
+
+  .process-scroll-hint {
+    margin-top: 28px;
+  }
+}
+
+/* ------------------------------------------------------------
+   SMALL MOBILE
+------------------------------------------------------------ */
+
+@media (max-width: 560px) {
+  .process-section {
+    min-height: calc(100vh + 100vh);
+  }
+
+  .process-sticky {
+    padding: 55px 0 40px;
+  }
+
+  .process-section__header {
+    margin-bottom: 30px;
+  }
+
+  .process-section__header .section-title {
+    font-size: clamp(26px, 7vw, 34px);
+  }
+
+  .process-section__header .section-subtitle {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .process-track {
+    padding-left: 0;
+  }
+
+  .process-line {
+    left: 26px;
+  }
+
+  .process-step {
+    grid-template-columns: 52px minmax(0, 1fr);
+
+    gap: 15px;
+
+    padding: 6px 0;
+  }
+
+  .process-step__circle {
+    width: 52px;
+    height: 52px;
+
+    flex-basis: 52px;
+  }
+
+  .process-step--active .process-step__circle {
+    transform: scale(1.04);
+  }
+
+  .process-step__content {
+    padding-top: 4px;
+  }
+
+  .process-step h3 {
+    font-size: 13px;
+  }
+
+  .process-step p {
+    font-size: 10px;
+  }
+
+  .process-scroll-hint {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------
+   ACCESSIBILITY
+------------------------------------------------------------ */
 
 @media (prefers-reduced-motion: reduce) {
+  .process-step,
   .process-step__circle,
   .process-step__content,
-  .process-step h3,
-  .process-step p,
-  .process-timeline__progress {
+  .process-line > span {
     transition: none;
   }
 
-  .process-scroll-hint__line::after {
+  .process-scroll-hint__mouse span {
     animation: none;
   }
 }
