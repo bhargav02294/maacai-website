@@ -7,8 +7,10 @@ const services = [
   { icon: '🌐', label: 'Web Development', color: '#0891b2' },
   { icon: '🎨', label: 'UI/UX Design', color: '#f59e0b' },
   { icon: '⚙️', label: 'Automation', color: '#10b981' },
+  { icon: '☁️', label: 'Cloud Solutions', color: '#6366f1' },
   { icon: '📊', label: 'Digital Marketing', color: '#ef4444' },
   { icon: '✨', label: 'Branding', color: '#f97316' },
+  { icon: '📈', label: 'Data Analytics', color: '#14b8a6' },
 ];
 
 export default function Services() {

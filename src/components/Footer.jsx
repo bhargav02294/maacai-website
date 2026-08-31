@@ -3,6 +3,7 @@ import './Footer.css';
 const footerLinks = {
   Company: ['About Us', 'Our Team', 'Careers', 'Blog', 'Press'],
   Services: ['AI Development', 'Web Development', 'Mobile Apps', 'SaaS Solutions', 'UI/UX Design'],
+  Products: ['Mine Healer', 'AI CRM', 'AI HRMS', 'AI Chatbot', 'AI ERP'],
   Contact: ['support@maacai.com', '+91 98765 43210', 'Bangalore, India'],
 };
 
