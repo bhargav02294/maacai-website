@@ -1,35 +1,27 @@
+import Icon from './Icon';
+import Reveal from './Reveal';
 import './Services.css';
 
 const services = [
-  { icon: '🤖', label: 'Artificial Intelligence', color: '#e91e8c' },
-  { icon: '☁️', label: 'SaaS Development', color: '#2563eb' },
-  { icon: '📱', label: 'Mobile Apps', color: '#7c3aed' },
-  { icon: '🌐', label: 'Web Development', color: '#0891b2' },
-  { icon: '🎨', label: 'UI/UX Design', color: '#f59e0b' },
-  { icon: '⚙️', label: 'Automation', color: '#10b981' },
-  { icon: '☁️', label: 'Cloud Solutions', color: '#6366f1' },
-  { icon: '📊', label: 'Digital Marketing', color: '#ef4444' },
-  { icon: '✨', label: 'Branding', color: '#f97316' },
-  { icon: '📈', label: 'Data Analytics', color: '#14b8a6' },
+  { icon: 'brain', label: 'Artificial Intelligence', desc: 'Intelligent models, copilots and AI-powered products.', color: '#e91e8c' },
+  { icon: 'cloud', label: 'SaaS Development', desc: 'Scalable subscription platforms built for growth.', color: '#2563eb' },
+  { icon: 'smartphone', label: 'Mobile Apps', desc: 'Fast, intuitive mobile experiences for modern users.', color: '#7c3aed' },
+  { icon: 'code', label: 'Web Development', desc: 'High-performance web platforms and applications.', color: '#0891b2' },
+  { icon: 'palette', label: 'UI/UX Design', desc: 'Conversion-focused interfaces with thoughtful UX.', color: '#f59e0b' },
+  { icon: 'settings', label: 'Automation', desc: 'Remove repetitive work with intelligent workflows.', color: '#10b981' },
+  { icon: 'cloud', label: 'Cloud Solutions', desc: 'Secure cloud architecture, migration and operations.', color: '#6366f1' },
+  { icon: 'megaphone', label: 'Digital Marketing', desc: 'Data-led campaigns that turn attention into demand.', color: '#ef4444' },
+  { icon: 'sparkles', label: 'Branding', desc: 'Distinct visual systems that make brands memorable.', color: '#f97316' },
+  { icon: 'chart', label: 'Data Analytics', desc: 'Actionable dashboards and insights from your data.', color: '#14b8a6' },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="services-section">
+    <section id="services" className="services-section section-anchor">
       <div className="container">
-        <div className="text-center services-section__header">
-          <p className="section-tag">WHAT WE DO</p>
-          <h2 className="section-title">Transforming Ideas into Intelligent Solutions</h2>
-        </div>
+        <Reveal><div className="text-center services-section__header"><p className="section-tag">WHAT WE DO</p><h2 className="section-title">Transforming Ideas into Intelligent Solutions</h2><p className="section-subtitle">From strategy to launch, we combine technology, design and AI to build digital products that solve real business problems.</p></div></Reveal>
         <div className="services-grid">
-          {services.map((s) => (
-            <div key={s.label} className="service-card" style={{ '--accent-color': s.color }}>
-              <div className="service-card__icon" style={{ background: `${s.color}18` }}>
-                <span>{s.icon}</span>
-              </div>
-              <p className="service-card__label">{s.label}</p>
-            </div>
-          ))}
+          {services.map((service, index) => <Reveal key={service.label} delay={index * 55}><article className="service-card interactive-card" style={{ '--accent-color': service.color, '--spot-x': '50%', '--spot-y': '50%' }} onMouseMove={(e) => { const r=e.currentTarget.getBoundingClientRect(); e.currentTarget.style.setProperty('--spot-x',`${e.clientX-r.left}px`); e.currentTarget.style.setProperty('--spot-y',`${e.clientY-r.top}px`); }}><div className="service-card__top"><div className="service-card__icon" style={{ background: `${service.color}14`, color: service.color }}><Icon name={service.icon} size={25}/></div><span className="service-card__number">0{index+1}</span></div><h3 className="service-card__label">{service.label}</h3><p className="service-card__desc">{service.desc}</p><span className="service-card__link">Explore <Icon name="arrowRight" size={14}/></span></article></Reveal>)}
         </div>
       </div>
     </section>

@@ -1,52 +1,12 @@
+import Icon from './Icon';
 import './Footer.css';
 
 const footerLinks = {
-  Company: ['About Us', 'Our Team', 'Careers', 'Blog', 'Press'],
-  Services: ['AI Development', 'Web Development', 'Mobile Apps', 'SaaS Solutions', 'UI/UX Design'],
-  Products: ['Mine Healer', 'AI CRM', 'AI HRMS', 'AI Chatbot', 'AI ERP'],
-  Contact: ['support@maacai.com', '+91 98765 43210', 'Bangalore, India'],
+  Company: [['About Us','#about'],['Our Work','#portfolio'],['Blog','#blog'],['Contact','#contact']],
+  Services: [['AI Development','#services'],['Web Development','#services'],['Mobile Apps','#services'],['SaaS Solutions','#services'],['UI/UX Design','#services']],
+  Products: [['Mine Healer','#products'],['AI CRM','#products'],['AI HRMS','#products'],['AI Chatbot','#products'],['AI ERP','#products']],
 };
 
-export default function Footer() {
-  return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer__top">
-          <div className="footer__brand">
-            <span className="footer__logo">maacai</span>
-            <p className="footer__tagline">
-              Building Intelligent Digital Solutions for the Future. Empowering businesses with AI-powered innovation.
-            </p>
-            <div className="footer__socials">
-              {['𝕏', 'in', 'f', '▶'].map((s, i) => (
-                <a key={i} href="#" className="footer__social">{s}</a>
-              ))}
-            </div>
-          </div>
-
-          {Object.entries(footerLinks).map(([cat, links]) => (
-            <div key={cat} className="footer__col">
-              <h4 className="footer__col-title">{cat}</h4>
-              <ul className="footer__col-links">
-                {links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="footer__col-link">{link}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <div className="footer__bottom">
-          <p className="footer__copy">© 2025 MAAC.AI Private Limited. All rights reserved.</p>
-          <div className="footer__legal">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Cookie Policy</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
+export default function Footer(){
+  return <footer className="footer"><div className="container"><div className="footer__top"><div className="footer__brand"><a href="#home" className="footer__logo"><span className="logo-mark"><span/></span><span>maacai</span></a><p className="footer__tagline">Building Intelligent Digital Solutions for the Future. Empowering businesses with AI-powered innovation.</p><div className="footer__contact-list"><a href="mailto:support@maacai.com"><Icon name="mail" size={14}/>support@maacai.com</a><a href="tel:+919876543210"><Icon name="phone" size={14}/>+91 98765 43210</a><span><Icon name="mapPin" size={14}/>Bangalore, India</span></div><div className="footer__socials"><a href="#contact" className="footer__social" aria-label="LinkedIn"><Icon name="linkedin" size={15}/></a><a href="#contact" className="footer__social" aria-label="X"><Icon name="twitter" size={14}/></a><a href="#contact" className="footer__social" aria-label="YouTube"><Icon name="youtube" size={15}/></a></div></div>{Object.entries(footerLinks).map(([category,links])=><div key={category} className="footer__col"><h4>{category}</h4><ul>{links.map(([label,href])=><li key={label}><a href={href}>{label}<Icon name="arrowRight" size={11}/></a></li>)}</ul></div>)}<div className="footer__col footer__col--contact"><h4>Start a Project</h4><p>Have an idea? Let&apos;s turn it into a digital product.</p><a href="#contact" className="footer__project-link">Book a consultation <Icon name="arrowRight" size={13}/></a></div></div><div className="footer__bottom"><p>© 2026 MAAC.AI Private Limited. All rights reserved.</p><div><a href="#contact">Privacy Policy</a><a href="#contact">Terms of Service</a><a href="#contact">Cookie Policy</a></div></div></div></footer>;
 }
