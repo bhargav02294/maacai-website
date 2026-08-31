@@ -4,7 +4,6 @@ import './Footer.css';
 const footerLinks = {
   Company: [['About Us','#about'],['Our Work','#portfolio'],['Blog','#blog'],['Contact','#contact']],
   Services: [['AI Development','#services'],['Web Development','#services'],['Mobile Apps','#services'],['SaaS Solutions','#services'],['UI/UX Design','#services']],
-  Products: [['Mine Healer','#products'],['AI CRM','#products'],['AI HRMS','#products'],['AI Chatbot','#products'],['AI ERP','#products']],
 };
 
 export default function Footer(){

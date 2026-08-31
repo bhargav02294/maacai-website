@@ -9,9 +9,7 @@ const services = [
   { icon: 'code', label: 'Web Development', desc: 'High-performance web platforms and applications.', color: '#0891b2' },
   { icon: 'palette', label: 'UI/UX Design', desc: 'Conversion-focused interfaces with thoughtful UX.', color: '#f59e0b' },
   { icon: 'settings', label: 'Automation', desc: 'Remove repetitive work with intelligent workflows.', color: '#10b981' },
-  { icon: 'cloud', label: 'Cloud Solutions', desc: 'Secure cloud architecture, migration and operations.', color: '#6366f1' },
   { icon: 'megaphone', label: 'Digital Marketing', desc: 'Data-led campaigns that turn attention into demand.', color: '#ef4444' },
-  { icon: 'sparkles', label: 'Branding', desc: 'Distinct visual systems that make brands memorable.', color: '#f97316' },
   { icon: 'chart', label: 'Data Analytics', desc: 'Actionable dashboards and insights from your data.', color: '#14b8a6' },
 ];
 

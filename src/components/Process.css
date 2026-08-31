@@ -1,1 +1,469 @@
-.process-section{padding:100px 0;background:#f7f9fc;overflow:hidden}.process-section__header{max-width:760px;margin:0 auto 62px}.process-track{position:relative;display:grid;grid-template-columns:repeat(9,1fr);gap:8px}.process-line{position:absolute;left:4%;right:4%;top:31px;height:3px;background:#e2e7ef;border-radius:999px;z-index:0}.process-line>span{display:block;height:100%;width:var(--line-progress);background:var(--gradient-full);border-radius:inherit;transition:width .6s cubic-bezier(.22,1,.36,1)}.process-step{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}.process-step__circle{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid #dfe5ee;color:#9aa5b4;font-size:10px;font-weight:900;box-shadow:0 7px 18px rgba(15,23,42,.05);transition:transform .35s,background .35s,color .35s,border-color .35s,box-shadow .35s}.process-step--active .process-step__circle{color:#fff;background:var(--gradient-full);border-color:transparent;box-shadow:0 12px 28px rgba(124,58,237,.2);transform:translateY(-3px)}.process-step__content{padding-top:17px;max-width:125px}.process-step__eyebrow{font-size:8px;font-weight:800;letter-spacing:1.4px;color:#a3adbb}.process-step h3{font-size:12px;font-weight:800;margin:4px 0}.process-step p{font-size:9.5px;color:var(--text-gray);line-height:1.45}.process-step--active .process-step__eyebrow{color:var(--primary)}@media(max-width:900px){.process-section{padding:78px 0}.process-track{display:flex;flex-direction:column;gap:0}.process-line{left:30px;top:20px;bottom:20px;right:auto;width:3px;height:auto}.process-line>span{width:100%;height:var(--line-progress);transition:height .6s}.process-step{flex-direction:row;align-items:flex-start;text-align:left;gap:18px;padding:12px 0}.process-step__circle{width:62px;height:62px;flex:none}.process-step__content{padding-top:5px;max-width:420px}.process-step h3{font-size:14px}.process-step p{font-size:11px}}
+
+.process-section {
+  position: relative;
+  height: 650vh;
+  background: #f7f9fc;
+  overflow: clip;
+}
+
+.process-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 680px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.process-section .container {
+  width: 100%;
+}
+
+.process-section__header {
+  max-width: 760px;
+  margin: 0 auto 34px;
+}
+
+.process-section__header .section-tag {
+  margin-bottom: 8px;
+}
+
+.process-section__header .section-title {
+  margin-bottom: 10px;
+}
+
+.process-section__header .section-subtitle {
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================================
+   PROCESS WRAPPER
+   ========================================= */
+
+.process-wrapper {
+  position: relative;
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 4px 0;
+}
+
+/* =========================================
+   VERTICAL TIMELINE
+   ========================================= */
+
+.process-timeline {
+  position: absolute;
+  left: 31px;
+  top: 31px;
+  bottom: 31px;
+  width: 2px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.process-timeline__track {
+  position: absolute;
+  inset: 0;
+  background: #e1e7ef;
+  border-radius: 999px;
+}
+
+.process-timeline__progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--process-progress);
+  max-height: 100%;
+  background: var(--gradient-full);
+  border-radius: 999px;
+  transform-origin: top;
+  transition: height 0.12s linear;
+}
+
+/* =========================================
+   PROCESS LIST
+   ========================================= */
+
+.process-list {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.process-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  min-height: 65px;
+  padding: 2px 0;
+}
+
+/* =========================================
+   MARKER
+   ========================================= */
+
+.process-step__marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+}
+
+.process-step__circle {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #dfe5ee;
+  color: #9aa5b4;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.045);
+
+  transition:
+    width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.35s ease,
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.45s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-step__circle::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  opacity: 0;
+  transform: scale(0.75);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================
+   CONTENT
+   ========================================= */
+
+.process-step__content {
+  padding: 7px 0 7px 20px;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+}
+
+.process-step__eyebrow {
+  display: block;
+  margin-bottom: 2px;
+  color: #a3adbb;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  line-height: 1.2;
+  transition: color 0.35s ease;
+}
+
+.process-step h3 {
+  margin: 0 0 2px;
+  color: var(--text-dark);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.25;
+  transition:
+    color 0.35s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-step p {
+  margin: 0;
+  color: var(--text-gray);
+  font-size: 9.5px;
+  line-height: 1.4;
+  transition:
+    color 0.35s ease,
+    opacity 0.35s ease;
+}
+
+/* =========================================
+   COMPLETED
+   ========================================= */
+
+.process-step--completed .process-step__circle {
+  color: #ffffff;
+  background: var(--gradient-full);
+  border-color: transparent;
+  box-shadow: 0 7px 20px rgba(124, 58, 237, 0.12);
+}
+
+.process-step--completed .process-step__eyebrow {
+  color: var(--primary);
+}
+
+/* =========================================
+   ACTIVE
+   ========================================= */
+
+.process-step--active .process-step__circle {
+  width: 62px;
+  height: 62px;
+  color: #ffffff;
+  background: var(--gradient-full);
+  border-color: transparent;
+  box-shadow:
+    0 12px 30px rgba(124, 58, 237, 0.22),
+    0 0 0 5px rgba(124, 58, 237, 0.07);
+  transform: scale(1.02);
+}
+
+.process-step--active .process-step__circle::after {
+  border-color: rgba(124, 58, 237, 0.2);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.process-step--active .process-step__content {
+  transform: translateX(5px);
+}
+
+.process-step--active .process-step__eyebrow {
+  color: var(--primary);
+}
+
+.process-step--active h3 {
+  color: var(--primary);
+  transform: translateX(2px);
+}
+
+.process-step--active p {
+  color: var(--text-dark);
+}
+
+/* =========================================
+   SCROLL HINT
+   ========================================= */
+
+.process-scroll-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 22px;
+  color: #a3adbb;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.process-scroll-hint__line {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 1px;
+  background: #cbd3de;
+  overflow: hidden;
+}
+
+.process-scroll-hint__line::after {
+  content: '';
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-full);
+  animation: processHint 1.8s ease-in-out infinite;
+}
+
+@keyframes processHint {
+  0% {
+    left: -100%;
+  }
+
+  50% {
+    left: 0;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 900px) {
+  .process-section {
+    height: 600vh;
+  }
+
+  .process-sticky {
+    min-height: 620px;
+    padding: 60px 0;
+  }
+
+  .process-section__header {
+    margin-bottom: 26px;
+  }
+
+  .process-wrapper {
+    width: min(680px, 100%);
+  }
+
+  .process-step {
+    min-height: 58px;
+  }
+
+  .process-step__marker {
+    width: 58px;
+  }
+
+  .process-timeline {
+    left: 28px;
+    top: 29px;
+    bottom: 29px;
+  }
+
+  .process-step__circle {
+    width: 50px;
+    height: 50px;
+  }
+
+  .process-step--active .process-step__circle {
+    width: 58px;
+    height: 58px;
+  }
+
+  .process-step__content {
+    padding-left: 17px;
+  }
+
+  .process-step h3 {
+    font-size: 12px;
+  }
+
+  .process-step p {
+    font-size: 9px;
+  }
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+  .process-section {
+    height: 720vh;
+  }
+
+  .process-sticky {
+    min-height: 100svh;
+    height: 100svh;
+    padding: 34px 0;
+  }
+
+  .process-section__header {
+    max-width: 340px;
+    margin-bottom: 25px;
+  }
+
+  .process-section__header .section-title {
+    font-size: clamp(25px, 7vw, 34px);
+  }
+
+  .process-section__header .section-subtitle {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .process-wrapper {
+    width: 100%;
+  }
+
+  .process-list {
+    gap: 0;
+  }
+
+  .process-step {
+    grid-template-columns: 52px 1fr;
+    min-height: 54px;
+  }
+
+  .process-step__marker {
+    width: 52px;
+  }
+
+  .process-timeline {
+    left: 25px;
+    top: 27px;
+    bottom: 27px;
+  }
+
+  .process-step__circle {
+    width: 42px;
+    height: 42px;
+    font-size: 8px;
+  }
+
+  .process-step--active .process-step__circle {
+    width: 50px;
+    height: 50px;
+  }
+
+  .process-step__content {
+    padding: 5px 0 5px 13px;
+  }
+
+  .process-step__eyebrow {
+    font-size: 7px;
+    letter-spacing: 1.1px;
+  }
+
+  .process-step h3 {
+    font-size: 11px;
+  }
+
+  .process-step p {
+    font-size: 8px;
+    line-height: 1.35;
+  }
+
+  .process-scroll-hint {
+    margin-top: 18px;
+    font-size: 6.5px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .process-step__circle,
+  .process-step__content,
+  .process-step h3,
+  .process-step p,
+  .process-timeline__progress {
+    transition: none;
+  }
+
+  .process-scroll-hint__line::after {
+    animation: none;
+  }
+}
