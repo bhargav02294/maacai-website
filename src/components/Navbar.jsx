@@ -3,14 +3,14 @@ import Icon from './Icon';
 import './Navbar.css';
 
 const navLinks = [
-  { label: 'Home', href: '#home', id: 'home' },
-  { label: 'About Us', href: '#about', id: 'about' },
-  { label: 'Services', href: '#services', id: 'services' },
-  { label: 'Products', href: '#products', id: 'products' },
-  { label: 'Industries', href: '#industries', id: 'industries' },
-  { label: 'Portfolio', href: '#portfolio', id: 'portfolio' },
-  { label: 'Blog', href: '#blog', id: 'blog' },
-  { label: 'Contact Us', href: '#contact', id: 'contact' },
+  { label: 'Home', href: '/', id: 'home' },
+  { label: 'About Us', href: '/about', id: 'about' },
+  { label: 'Services', href: '/#services', id: 'services' },
+  { label: 'Products', href: '/#products', id: 'products' },
+  { label: 'Industries', href: '/#industries', id: 'industries' },
+  { label: 'Portfolio', href: '/#portfolio', id: 'portfolio' },
+  { label: 'Blog', href: '/blog', id: 'blog' },
+  { label: 'Contact Us', href: '/contact', id: 'contact' },
 ];
 
 export default function Navbar() {
@@ -162,10 +162,9 @@ export default function Navbar() {
         -------------------------------------------------- */}
 
         <a
-          href="#home"
+          href="/"
           className="navbar__logo"
           aria-label="MAAC.AI home"
-          onClick={handleNavClick}
         >
           <span className="logo-mark" aria-hidden="true">
             <span />
