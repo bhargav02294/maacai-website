@@ -32,6 +32,11 @@ import SaaSDevelopmentPage from './components/pages/SaaSDevelopmentPage';
 import MobileAppsPage from './components/pages/MobileAppsPage';
 import WebDevelopmentPage from './components/pages/WebDevelopmentPage';
 
+import UIUXDesignPage from './components/pages/UIUXDesignPage';
+import AutomationPage from './components/pages/AutomationPage';
+import DigitalMarketingPage from './components/pages/DigitalMarketingPage';
+import DataAnalyticsPage from './components/pages/DataAnalyticsPage';
+
 function HomePage() {
   return (
     <>
@@ -135,6 +140,42 @@ function App() {
             element={
               <main id="main-content">
                 <WebDevelopmentPage />
+              </main>
+            }
+          />
+
+          <Route
+            path="/services/ui-ux-design"
+            element={
+              <main id="main-content">
+                <UIUXDesignPage />
+              </main>
+            }
+          />
+
+          <Route
+            path="/services/automation"
+            element={
+              <main id="main-content">
+                <AutomationPage />
+              </main>
+            }
+          />
+
+          <Route
+            path="/services/digital-marketing"
+            element={
+              <main id="main-content">
+                <DigitalMarketingPage />
+              </main>
+            }
+          />
+
+          <Route
+            path="/services/data-analytics"
+            element={
+              <main id="main-content">
+                <DataAnalyticsPage />
               </main>
             }
           />
