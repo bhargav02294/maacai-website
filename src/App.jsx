@@ -23,10 +23,9 @@ import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
 import BackToTop from './components/BackToTop';
 
-import AboutPage from './pages/AboutPage';
-import BlogPage from './pages/BlogPage';
-import ContactPage from './pages/ContactPage';
-
+import AboutPage from "./components/pages/AboutPage";
+import BlogPage from "./components/pages/BlogPage";
+import ContactPage from "./components/pages/ContactPage";
 
 function HomePage() {
   return (

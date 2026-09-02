@@ -1,5 +1,5 @@
-import Icon from '../components/Icon';
-import Reveal from '../components/Reveal';
+import Icon from "../Icon";
+import Reveal from "../Reveal";
 import './AboutPage.css';
 
 const values = [
