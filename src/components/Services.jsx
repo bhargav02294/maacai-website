@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Icon from './Icon';
 import Reveal from './Reveal';
 import './Services.css';
@@ -8,48 +9,56 @@ const services = [
     label: 'Artificial Intelligence',
     desc: 'Intelligent models, copilots and AI-powered products.',
     color: '#e91e8c',
+    path: '/services/artificial-intelligence',
   },
   {
     icon: 'cloud',
     label: 'SaaS Development',
     desc: 'Scalable subscription platforms built for growth.',
     color: '#2563eb',
+    path: '/services/saas-development',
   },
   {
     icon: 'smartphone',
     label: 'Mobile Apps',
     desc: 'Fast, intuitive mobile experiences for modern users.',
     color: '#7c3aed',
+    path: '/services/mobile-apps',
   },
   {
     icon: 'code',
     label: 'Web Development',
     desc: 'High-performance web platforms and applications.',
     color: '#0891b2',
+    path: '/services/web-development',
   },
   {
     icon: 'palette',
     label: 'UI/UX Design',
     desc: 'Conversion-focused interfaces with thoughtful UX.',
     color: '#f59e0b',
+    path: '/services/ui-ux-design',
   },
   {
     icon: 'settings',
     label: 'Automation',
     desc: 'Remove repetitive work with intelligent workflows.',
     color: '#10b981',
+    path: '/services/automation',
   },
   {
     icon: 'megaphone',
     label: 'Digital Marketing',
     desc: 'Data-led campaigns that turn attention into demand.',
     color: '#ef4444',
+    path: '/services/digital-marketing',
   },
   {
     icon: 'chart',
     label: 'Data Analytics',
     desc: 'Actionable dashboards and insights from your data.',
     color: '#14b8a6',
+    path: '/services/data-analytics',
   },
 ];
 
@@ -85,7 +94,8 @@ export default function Services() {
               key={service.label}
               delay={index * 55}
             >
-              <article
+              <Link
+                to={service.path}
                 className="service-card interactive-card"
                 style={{
                   '--accent-color': service.color,
@@ -141,7 +151,7 @@ export default function Services() {
                     size={14}
                   />
                 </span>
-              </article>
+              </Link>
             </Reveal>
           ))}
         </div>

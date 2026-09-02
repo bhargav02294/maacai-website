@@ -23,9 +23,14 @@ import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
 import BackToTop from './components/BackToTop';
 
-import AboutPage from "./components/pages/AboutPage";
-import BlogPage from "./components/pages/BlogPage";
-import ContactPage from "./components/pages/ContactPage";
+import AboutPage from './components/pages/AboutPage';
+import BlogPage from './components/pages/BlogPage';
+import ContactPage from './components/pages/ContactPage';
+
+import ArtificialIntelligencePage from './components/pages/ArtificialIntelligencePage';
+import SaaSDevelopmentPage from './components/pages/SaaSDevelopmentPage';
+import MobileAppsPage from './components/pages/MobileAppsPage';
+import WebDevelopmentPage from './components/pages/WebDevelopmentPage';
 
 function HomePage() {
   return (
@@ -47,7 +52,6 @@ function HomePage() {
     </>
   );
 }
-
 
 function App() {
   return (
@@ -93,6 +97,44 @@ function App() {
             element={
               <main id="main-content">
                 <ContactPage />
+              </main>
+            }
+          />
+
+          {/* SERVICES */}
+
+          <Route
+            path="/services/artificial-intelligence"
+            element={
+              <main id="main-content">
+                <ArtificialIntelligencePage />
+              </main>
+            }
+          />
+
+          <Route
+            path="/services/saas-development"
+            element={
+              <main id="main-content">
+                <SaaSDevelopmentPage />
+              </main>
+            }
+          />
+
+          <Route
+            path="/services/mobile-apps"
+            element={
+              <main id="main-content">
+                <MobileAppsPage />
+              </main>
+            }
+          />
+
+          <Route
+            path="/services/web-development"
+            element={
+              <main id="main-content">
+                <WebDevelopmentPage />
               </main>
             }
           />
