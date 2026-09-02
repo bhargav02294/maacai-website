@@ -1,4 +1,11 @@
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from 'react-router-dom';
+
 import './App.css';
+
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TrustedBy from './components/TrustedBy';
@@ -16,11 +23,14 @@ import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
 import BackToTop from './components/BackToTop';
 
-function App() {
+import AboutPage from './pages/AboutPage';
+import BlogPage from './pages/BlogPage';
+import ContactPage from './pages/ContactPage';
+
+
+function HomePage() {
   return (
-    <div className="App">
-      <ScrollProgress />
-      <Navbar />
+    <>
       <main id="main-content">
         <Hero />
         <TrustedBy />
@@ -35,9 +45,68 @@ function App() {
         <Blog />
         <CTA />
       </main>
-      <Footer />
-      <BackToTop />
-    </div>
+    </>
+  );
+}
+
+
+function App() {
+  return (
+    <BrowserRouter>
+
+      <div className="App">
+
+        <ScrollProgress />
+
+        <Navbar />
+
+        <Routes>
+
+          {/* HOME */}
+          <Route
+            path="/"
+            element={<HomePage />}
+          />
+
+          {/* ABOUT */}
+          <Route
+            path="/about"
+            element={
+              <main id="main-content">
+                <AboutPage />
+              </main>
+            }
+          />
+
+          {/* BLOG */}
+          <Route
+            path="/blog"
+            element={
+              <main id="main-content">
+                <BlogPage />
+              </main>
+            }
+          />
+
+          {/* CONTACT */}
+          <Route
+            path="/contact"
+            element={
+              <main id="main-content">
+                <ContactPage />
+              </main>
+            }
+          />
+
+        </Routes>
+
+        <Footer />
+
+        <BackToTop />
+
+      </div>
+
+    </BrowserRouter>
   );
 }
 
