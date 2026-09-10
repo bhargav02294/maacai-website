@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 .services-section {
   padding: 100px 0;
   background:
@@ -198,4 +206,133 @@
   .service-card__link .icon {
     transition: none;
   }
+}
+
+
+
+
+
+
+
+
+/* =========================================================
+   SERVICE DETAIL - SIMPLE TYPOGRAPHY
+   Applies to the complete service detail section
+   ========================================================= */
+
+/* Main Hero Heading */
+.service-detail-page .service-detail-hero h1 {
+  font-weight: 600 !important;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+/* Hero Description */
+.service-detail-page .service-detail-hero__description {
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+/* Back to Services */
+.service-detail-page .service-detail-back {
+  font-weight: 500;
+}
+
+/* Service Number + Category */
+.service-detail-page .service-detail-kicker {
+  font-weight: 600;
+}
+
+/* All normal section headings */
+.service-detail-page h2 {
+  font-weight: 600 !important;
+  letter-spacing: -0.025em;
+}
+
+/* Smaller headings */
+.service-detail-page h3 {
+  font-weight: 600 !important;
+  letter-spacing: -0.015em;
+}
+
+/* Paragraph text throughout the service page */
+.service-detail-page p {
+  font-weight: 400;
+}
+
+/* Service cards */
+.service-detail-page .service-card__label {
+  font-weight: 600;
+}
+
+.service-detail-page .service-card__desc {
+  font-weight: 400;
+}
+
+/* Card links */
+.service-detail-page .service-card__link {
+  font-weight: 600;
+}
+
+/* Buttons */
+.service-detail-page .service-detail-primary-button,
+.service-detail-page .service-detail-secondary-button {
+  font-weight: 600;
+}
+
+/* Feature / content titles */
+.service-detail-page .service-feature__title,
+.service-detail-page .service-detail-feature__title {
+  font-weight: 600 !important;
+}
+
+/* Statistics / numbers */
+.service-detail-page .service-stat__number {
+  font-weight: 600 !important;
+}
+
+/* Small labels */
+.service-detail-page .service-stat__label,
+.service-detail-page .service-detail-label {
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .service-detail-page .service-detail-hero h1 {
+    font-weight: 600 !important;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+  }
+
+  .service-detail-page h2 {
+    font-weight: 600 !important;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .service-detail-page .service-detail-hero h1 {
+    font-size: 2.1rem;
+    font-weight: 600 !important;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+  }
+
+  .service-detail-page h2 {
+    font-size: 1.8rem;
+    font-weight: 600 !important;
+  }
+
+  .service-detail-page h3 {
+    font-weight: 600 !important;
+  }
+
 }

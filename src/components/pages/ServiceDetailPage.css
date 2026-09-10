@@ -1445,3 +1445,390 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+
+
+
+
+
+
+/* ============================================================
+   MAAC.AI SERVICE PAGES
+   GLOBAL TYPOGRAPHY OVERRIDE
+
+   This applies to ALL individual service pages:
+   AI
+   SaaS
+   Mobile Apps
+   Web Development
+   UI/UX
+   Automation
+   Digital Marketing
+   Data Analytics
+   ============================================================ */
+
+
+/* ============================================================
+   MAIN SERVICE HERO
+   Same bold visual style as the MAAC.AI home hero
+   ============================================================ */
+
+.service-detail-page .service-detail-hero h1 {
+  font-size: clamp(2.6rem, 5vw, 4.25rem) !important;
+
+  font-weight: 900 !important;
+
+  line-height: 1.04 !important;
+
+  letter-spacing: -0.065em !important;
+
+  color: var(--text-dark) !important;
+
+  max-width: 760px;
+
+  margin: 0;
+
+  text-wrap: balance;
+}
+
+
+/* ============================================================
+   SERVICE PAGE SECTION HEADINGS
+   ============================================================ */
+
+.service-detail-page .service-detail-intro h2,
+.service-detail-page .service-detail-section-heading h2,
+.service-detail-page .service-detail-process h2,
+.service-detail-page .service-detail-features h2,
+.service-detail-page .service-detail-tech h2,
+.service-detail-page .service-detail-cta h2 {
+  font-weight: 800 !important;
+
+  line-height: 1.05 !important;
+
+  letter-spacing: -0.045em !important;
+
+  color: var(--text-dark) !important;
+}
+
+
+/* ============================================================
+   CAPABILITY / FEATURE CARD TITLES
+   ============================================================ */
+
+.service-detail-page
+.service-detail-capability-card h3,
+
+.service-detail-page
+.service-detail-feature-card h3 {
+  font-weight: 700 !important;
+
+  line-height: 1.25 !important;
+
+  letter-spacing: -0.025em !important;
+
+  color: var(--text-dark) !important;
+}
+
+
+/* ============================================================
+   PROCESS TITLES
+   ============================================================ */
+
+.service-detail-page
+.service-detail-process-item h3,
+
+.service-detail-page
+.service-detail-process-item__body h3 {
+  font-weight: 700 !important;
+
+  line-height: 1.25 !important;
+
+  letter-spacing: -0.02em !important;
+
+  color: var(--text-dark) !important;
+}
+
+
+/* ============================================================
+   HERO LABEL / CATEGORY
+   ============================================================ */
+
+.service-detail-page .service-detail-kicker {
+  font-weight: 800 !important;
+
+  color: var(--service-color) !important;
+
+  letter-spacing: 0.14em;
+}
+
+
+/* ============================================================
+   SECTION LABELS
+   ============================================================ */
+
+.service-detail-page .section-tag {
+  font-weight: 800 !important;
+
+  color: var(--service-color) !important;
+
+  letter-spacing: 0.16em;
+}
+
+
+/* ============================================================
+   BACK TO SERVICES
+   ============================================================ */
+
+.service-detail-page .service-detail-back {
+  font-weight: 600 !important;
+
+  color: var(--text-gray);
+}
+
+
+/* ============================================================
+   NORMAL BODY TEXT
+   Keep paragraphs lighter so headings stand out
+   ============================================================ */
+
+.service-detail-page
+.service-detail-hero__description,
+
+.service-detail-page
+.service-detail-intro__copy p,
+
+.service-detail-page
+.service-detail-section-heading > p,
+
+.service-detail-page
+.service-detail-capability-card p,
+
+.service-detail-page
+.service-detail-feature-card p,
+
+.service-detail-page
+.service-detail-process-item__body p,
+
+.service-detail-page
+.service-detail-cta p {
+  font-weight: 400 !important;
+
+  line-height: 1.75;
+}
+
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.service-detail-page
+.service-detail-primary-button,
+
+.service-detail-page
+.service-detail-secondary-button {
+  font-weight: 600 !important;
+}
+
+
+/* ============================================================
+   DASHBOARD / VISUAL TEXT
+   ============================================================ */
+
+.service-detail-page
+.service-detail-dashboard__top strong,
+
+.service-detail-page
+.service-detail-dashboard__main strong,
+
+.service-detail-page
+.service-detail-dashboard__metrics strong,
+
+.service-detail-page
+.service-detail-dashboard__footer strong {
+  font-weight: 700 !important;
+}
+
+
+/* ============================================================
+   FLOATING CARDS
+   ============================================================ */
+
+.service-detail-page
+.service-detail-floating-card {
+  font-weight: 600 !important;
+}
+
+.service-detail-page
+.service-detail-floating-card strong {
+  font-weight: 700 !important;
+}
+
+
+/* ============================================================
+   NUMBERS
+   ============================================================ */
+
+.service-detail-page
+.service-detail-section-number,
+
+.service-detail-page
+.service-detail-capability-card__number {
+  font-weight: 600 !important;
+
+  color: var(--service-color);
+}
+
+
+/* ============================================================
+   SERVICE COLOR THEME
+   Keeps the existing service color system
+   ============================================================ */
+
+.service-detail-page {
+  --service-color-soft:
+    color-mix(
+      in srgb,
+      var(--service-color) 12%,
+      transparent
+    );
+
+  --service-color-medium:
+    color-mix(
+      in srgb,
+      var(--service-color) 22%,
+      transparent
+    );
+
+  --service-color-strong:
+    color-mix(
+      in srgb,
+      var(--service-color) 42%,
+      transparent
+    );
+}
+
+
+/* ============================================================
+   HERO BACKGROUND
+   ============================================================ */
+
+.service-detail-page .service-detail-hero {
+  background:
+    radial-gradient(
+      circle at 82% 25%,
+      var(--service-color-soft),
+      transparent 31%
+    ),
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #fbfcff 100%
+    );
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 1100px) {
+
+  .service-detail-page
+  .service-detail-hero h1 {
+    font-size: clamp(
+      2.6rem,
+      6vw,
+      4rem
+    ) !important;
+
+    font-weight: 900 !important;
+
+    line-height: 1.04 !important;
+
+    letter-spacing: -0.055em !important;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .service-detail-page
+  .service-detail-hero h1 {
+    font-size: clamp(
+      2.35rem,
+      10vw,
+      3.5rem
+    ) !important;
+
+    font-weight: 900 !important;
+
+    line-height: 1.06 !important;
+
+    letter-spacing: -0.045em !important;
+  }
+
+  .service-detail-page
+  .service-detail-intro h2,
+
+  .service-detail-page
+  .service-detail-section-heading h2,
+
+  .service-detail-page
+  .service-detail-cta h2 {
+    font-weight: 800 !important;
+
+    line-height: 1.08 !important;
+
+    letter-spacing: -0.035em !important;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .service-detail-page
+  .service-detail-hero h1 {
+    font-size: 2.25rem !important;
+
+    font-weight: 900 !important;
+
+    line-height: 1.08 !important;
+
+    letter-spacing: -0.035em !important;
+  }
+
+  .service-detail-page
+  .service-detail-intro h2,
+
+  .service-detail-page
+  .service-detail-section-heading h2,
+
+  .service-detail-page
+  .service-detail-cta h2 {
+    font-size: 2rem !important;
+
+    font-weight: 800 !important;
+
+    line-height: 1.08 !important;
+  }
+
+  .service-detail-page
+  .service-detail-capability-card h3,
+
+  .service-detail-page
+  .service-detail-feature-card h3 {
+    font-weight: 700 !important;
+  }
+
+}

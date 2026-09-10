@@ -23,40 +23,79 @@ import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
 import BackToTop from './components/BackToTop';
 
+
+// ======================================================
+// MAIN SERVICES PAGE
+// ======================================================
+
+import ServicesPage from './components/pages/ServicesPage';
+
+
+// ======================================================
+// OTHER PAGES
+// ======================================================
+
 import AboutPage from './components/pages/AboutPage';
 import BlogPage from './components/pages/BlogPage';
 import ContactPage from './components/pages/ContactPage';
+
+
+// ======================================================
+// SERVICE DETAIL PAGES
+// ======================================================
 
 import ArtificialIntelligencePage from './components/pages/ArtificialIntelligencePage';
 import SaaSDevelopmentPage from './components/pages/SaaSDevelopmentPage';
 import MobileAppsPage from './components/pages/MobileAppsPage';
 import WebDevelopmentPage from './components/pages/WebDevelopmentPage';
-
 import UIUXDesignPage from './components/pages/UIUXDesignPage';
 import AutomationPage from './components/pages/AutomationPage';
 import DigitalMarketingPage from './components/pages/DigitalMarketingPage';
 import DataAnalyticsPage from './components/pages/DataAnalyticsPage';
 
+
+// ======================================================
+// HOME PAGE
+// ======================================================
+
 function HomePage() {
   return (
     <>
       <main id="main-content">
+
         <Hero />
+
         <TrustedBy />
+
         <Services />
+
         <Industries />
+
         <FeaturedProduct />
+
         <Stats />
+
         <WhyChoose />
+
         <Process />
+
         <Portfolio />
+
         <Testimonials />
+
         <Blog />
+
         <CTA />
+
       </main>
     </>
   );
 }
+
+
+// ======================================================
+// APP
+// ======================================================
 
 function App() {
   return (
@@ -64,19 +103,32 @@ function App() {
 
       <div className="App">
 
+        {/* Scroll Progress */}
         <ScrollProgress />
 
+        {/* Navbar */}
         <Navbar />
+
+        {/* ==================================================
+            ROUTES
+        ================================================== */}
 
         <Routes>
 
-          {/* HOME */}
+          {/* ==================================================
+              HOME
+          ================================================== */}
+
           <Route
             path="/"
             element={<HomePage />}
           />
 
-          {/* ABOUT */}
+
+          {/* ==================================================
+              ABOUT
+          ================================================== */}
+
           <Route
             path="/about"
             element={
@@ -86,7 +138,11 @@ function App() {
             }
           />
 
-          {/* BLOG */}
+
+          {/* ==================================================
+              BLOG
+          ================================================== */}
+
           <Route
             path="/blog"
             element={
@@ -96,7 +152,11 @@ function App() {
             }
           />
 
-          {/* CONTACT */}
+
+          {/* ==================================================
+              CONTACT
+          ================================================== */}
+
           <Route
             path="/contact"
             element={
@@ -106,7 +166,30 @@ function App() {
             }
           />
 
-          {/* SERVICES */}
+
+          {/* ==================================================
+              SERVICES MAIN PAGE
+              
+              Navbar Services
+              ↓
+              /services
+              ↓
+              ServicesPage
+          ================================================== */}
+
+          <Route
+            path="/services"
+            element={
+              <main id="main-content">
+                <ServicesPage />
+              </main>
+            }
+          />
+
+
+          {/* ==================================================
+              AI SOLUTIONS
+          ================================================== */}
 
           <Route
             path="/services/artificial-intelligence"
@@ -117,6 +200,11 @@ function App() {
             }
           />
 
+
+          {/* ==================================================
+              SAAS DEVELOPMENT
+          ================================================== */}
+
           <Route
             path="/services/saas-development"
             element={
@@ -125,6 +213,11 @@ function App() {
               </main>
             }
           />
+
+
+          {/* ==================================================
+              MOBILE APPS
+          ================================================== */}
 
           <Route
             path="/services/mobile-apps"
@@ -135,6 +228,11 @@ function App() {
             }
           />
 
+
+          {/* ==================================================
+              WEB DEVELOPMENT
+          ================================================== */}
+
           <Route
             path="/services/web-development"
             element={
@@ -143,6 +241,11 @@ function App() {
               </main>
             }
           />
+
+
+          {/* ==================================================
+              UI/UX DESIGN
+          ================================================== */}
 
           <Route
             path="/services/ui-ux-design"
@@ -153,6 +256,11 @@ function App() {
             }
           />
 
+
+          {/* ==================================================
+              AUTOMATION
+          ================================================== */}
+
           <Route
             path="/services/automation"
             element={
@@ -162,6 +270,11 @@ function App() {
             }
           />
 
+
+          {/* ==================================================
+              DIGITAL MARKETING
+          ================================================== */}
+
           <Route
             path="/services/digital-marketing"
             element={
@@ -170,6 +283,11 @@ function App() {
               </main>
             }
           />
+
+
+          {/* ==================================================
+              DATA ANALYTICS
+          ================================================== */}
 
           <Route
             path="/services/data-analytics"
@@ -182,8 +300,11 @@ function App() {
 
         </Routes>
 
+
+        {/* Footer */}
         <Footer />
 
+        {/* Back To Top */}
         <BackToTop />
 
       </div>
